@@ -1,0 +1,124 @@
+body {
+	background: url(/img/2.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+main {
+	justify-content: center;
+}
+
+main .container {
+	margin: auto;
+	text-align: center;
+	max-width: 100%;
+}
+
+.hom-content {
+	background: rgba(255,255,255,0.5);
+	backdrop-filter: blur(26px);
+
+	border-radius: var(--radius-1);
+	padding: 1rem;
+}
+
+.logo {
+	width: 100%;
+	max-width: 220px;
+}
+
+p {
+	margin: 0.5rem 0;
+	font-size: 1.5rem;
+}
+
+.control {
+    padding: 2rem 0;
+}
+
+.control button {
+	border-radius: var(--radius);
+	min-width: 300px;
+}
+
+
+/* CAROUSEL
+------------------------------------------------------------------------------*/
+.carousel {
+	position: fixed;
+	inset: 0;
+	z-index: 1;
+}
+
+.carousel img {
+	position: absolute;
+	inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+	
+	transition: 2s;
+	opacity: 0;
+	/* transform: scale(0); */
+}
+
+.carousel img.on {
+	opacity: 1;
+	transform: none;
+}
+
+/* SIGN IN
+------------------------------------------------------------------------------*/
+.signin {
+	position: fixed;
+	z-index: -200;
+	inset: 0;
+
+	background: rgba(200, 200, 200, 0.6);
+    backdrop-filter: blur(26px);
+	border-radius: var(--radius-1);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+
+	transition: 0.2s;
+	opacity: 0;
+	transform: scale(0);
+}
+
+.signin.on {
+	z-index: 2000;
+	opacity: 1;
+	transform: none;
+}
+
+.signin .form {
+	max-width: 300px;
+	background: var(--bg);
+	padding: 2rem;
+	box-shadow: 4px 30px 60px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius-1);
+}
+
+.signin button {
+	margin: 1rem 0 0 0;
+	width: 100%;
+}
+
+.signin .report {
+	color: var(--primary);
+}
+
+
+/* QUERY
+------------------------------------------------------------------------------*/
+@media screen and (max-width: 700px) {
+	body {
+		font-size: 16px;
+	}
+
+	h1 {
+    	font-size: 3rem;
+	}
+}

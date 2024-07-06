@@ -1,0 +1,203 @@
+/* THEME DEFAULT
+----------------------------------------------------------------------------- */
+:root {
+    --primary: #b71c1c;
+    /* --secondary: #0060c1; */
+    --secondary: #000;
+    --tertiary: #ff8000;
+    --hover: #889900;
+
+	--btn-pri-bg: #000;
+	--btn-pri-text: #fff;
+	--btn-pri-hover-bg: #fdf289;
+	--btn-pri-hover-text: #000;
+
+	--btn-text: #fff;
+	--btn-elevation: 0 0 2px rgba(0, 0, 0, 0.2);
+	--btn-border: #cccccc;
+
+    --text: #222222;
+    --bg: #f0f0f0;
+
+	--white: #fff;
+
+    --radius: 4px;
+    --radius-1: 8px;
+    --radius-2: 16px;
+    --radius-50: 50%;
+}
+
+/* RESETS 
+----------------------------------------------------------------------------- */
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+html,
+body,
+button,
+input,
+select,
+label,
+table,
+textarea {
+    font-size: 14px;
+    font-family: Montserrat, BlinkMacSystemFont, -apple-system, "Segoe UI", system-ui, Roboto,
+        "Helvetica Neue", Ubuntu, Tahoma, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html,
+body {
+    background-size: cover;
+    background: var(--bg);
+    color: var(--text);	
+	font-weight: 500;
+	/* scrollbar-gutter: stable; */
+}
+
+hr {
+    clear: both;
+}
+
+sup {
+    margin: -0.2rem 0.1rem 0 0;
+    font-size: 0.7rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: vg, os, sans-serif;
+}
+
+h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--text);
+    text-shadow: none;
+}
+
+p {
+    color: var(--text);
+    text-shadow: none;
+    clear: both;
+}
+
+
+/** BUTTON
+----------------------------------------------------------------------------- */
+button {
+	transition: .6s;
+    min-width: 5rem;
+    min-height: 2.5rem;
+    cursor: pointer;
+    background: var(--btn-pri-bg);
+    border: none;
+    border-radius: var(--radius);
+    color: var(--btn-pri-text);
+    text-shadow: none;
+    box-shadow: var(--btn-elevation);
+}
+
+button:hover {
+    color: var(--btn-pri-hover-text);
+    font-weight: 500;
+    background: #eeeeee;
+    box-shadow: -1px -3px 4px #fff, 1px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+button .material-icons {
+    font-size: 1.3rem;
+    margin: 0.2rem 0.5rem 0 0;
+}
+
+button.btn {}
+
+button.btn-secondary {
+    color: var(--btn-text);
+    background: var(--tertiary);
+}
+
+button.btn-danger {
+    color: var(--btn-text);
+    background: var(--primary);
+}
+
+/** DIV + INPUT
+----------------------------------------------------------------------------- */
+.divput {
+    display: flex;
+    background: var(--btn-text);
+    border: none;
+    border-radius: var(--radius);
+    border-bottom: 1px solid var(--btn-border);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3) inset;
+    margin: 0 0 1rem 0;
+    width: 100%;
+    min-height: 1rem;
+}
+
+.divput div {
+    text-wrap: nowrap;
+    padding: 0.5rem;
+    margin: 0;
+    color: #227;
+    background: rgb(75 163 251 / 18%);
+}
+
+.divput input {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0.5rem 1rem 0.5rem 0.5rem !important;
+}
+
+/** INPUT
+----------------------------------------------------------------------------- */
+label {
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+    padding: 0 0 0 0.5rem;
+    display: block;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+select,
+textarea {
+    background: var(--btn-text);
+    border: none;
+    border-radius: var(--radius);
+    border-bottom: 1px solid var(--btn-border);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3) inset;
+    padding: 0.5rem 1rem;
+    margin: 0 0 1rem 0;
+    width: 100%;
+    min-height: 1rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1rem;
+    height: 1rem;
+    float: left;
+    margin: 0.2rem 0.5rem 0 0;
+    -moz-appearance: auto;
+    -webkit-appearance: auto;
+    appearance: auto;
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    margin: 0;
+}

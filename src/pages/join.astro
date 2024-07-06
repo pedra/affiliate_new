@@ -1,0 +1,193 @@
+---
+import Layout from "../layouts/JoinLayout.astro";
+---
+
+<Layout title="Join FreedomeE">
+  <main>
+    <div class="container">
+      <div class="profile" id="profile">
+        <div class="info">
+          <div class="avatar" id="avatar">
+            <img id="aft-avatar" src="/img/logo.png" alt="user photo" />
+          </div>
+          <h1 id="aft-name">[[name]]</h1>
+          <input type="hidden" id="aft-code" value="[[code]]" />
+          <input type="hidden" id="aft-id" value="[[id]]" />
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+          excepturi incidunt quia assumenda pariatur.
+        </p>
+      </div>
+
+      <div class="projects" id="projects">
+        <div class="card-project" id="card-project-1">
+          <div class="title">
+            <h2>Around</h2>
+            <div class="selector">
+              <div>I want</div>
+              <span
+                class="material-symbols-outlined disabled"
+                data-name="around"
+                data-status="1">toggle_on</span
+              >
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+            excepturi incidunt quia assumenda pariatur.
+          </p>
+        </div>
+
+        <div class="card-project" id="card-project-2">
+          <div class="title">
+            <h2>Events</h2>
+            <div class="selector">
+              <div>I want</div>
+              <span
+                class="material-symbols-outlined"
+                data-name="events"
+                data-status="1">toggle_on</span
+              >
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+            excepturi incidunt quia assumenda pariatur.
+          </p>
+        </div>
+
+        <div class="card-project" id="card-project-3">
+          <div class="title">
+            <h2>Store</h2>
+            <div class="selector">
+              <div>I want</div>
+              <span
+                class="material-symbols-outlined"
+                data-name="store"
+                data-status="1">toggle_on</span
+              >
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+            excepturi incidunt quia assumenda pariatur.
+          </p>
+        </div>
+
+        <div class="card-project" id="card-project-4">
+          <div class="title">
+            <h2>Learning</h2>
+            <div class="selector">
+              <div>I want</div>
+              <span
+                class="material-symbols-outlined"
+                data-name="learning"
+                data-status="1">toggle_on</span
+              >
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+            excepturi incidunt quia assumenda pariatur.
+          </p>
+        </div>
+
+        <div class="card-project" id="card-project-5">
+          <div class="title">
+            <h2>Streaming</h2>
+            <div class="selector">
+              <div>I want</div>
+              <span
+                class="material-symbols-outlined"
+                data-name="streaming"
+                data-status="1">toggle_on</span
+              >
+            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+            excepturi incidunt quia assumenda pariatur.
+          </p>
+        </div>
+      </div>
+
+      <div class="form">
+        <div class="frm-input">
+
+          <div class="form-input">
+            <label for="form-name">Name</label>
+            <input type="text" id="form-name" placeholder="Your name..." />
+          </div>
+
+          <div class="form-input">
+            <label for="form-email">E-mail</label>
+            <input
+              type="email"
+              id="form-email"
+              placeholder="Your e-mail address..."
+            />
+          </div>
+
+          <div class="form-input">
+            <label for="form-phone">Phone (numbers only)</label>
+			<div class="divput">
+				<div>code</div>
+            	<input
+              		type="number"
+              		id="form-phone"
+              		placeholder="Your phone number..."
+            	/>
+			</div>
+          </div>
+
+          <div class="form-input country">
+            <label for="form-country">Country</label>
+            <input
+              type="text"
+              data-id=""
+              id="form-country"
+              placeholder="Your Country..."
+              autocomplete="off"
+            />
+			<ul class="result" id="country-result"></ul>            
+          </div>
+
+          <div class="form-input">
+            <label for="form-company">Company</label>
+            <input
+              type="text"
+              id="form-company"
+              placeholder="Your company..."
+            />
+          </div>
+
+          <div class="form-input">
+            <label for="form-password">Password</label>
+            <input
+              type="password"
+              id="form-password"
+              placeholder="Your password..."
+            />
+          </div>
+
+          <div class="form-input">
+            <label for="form-cpassword">Confirm password</label>
+            <input
+              type="password"
+              id="form-cpassword"
+              placeholder="Confirme your password..."
+            />
+          </div>         
+        </div>
+
+        <div class="control">
+        	<div>Discover
+            	<a href="https://freedomee.network">FreedomeE.network</a> now!
+			</div>
+          	<button id="form-submit">Create</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

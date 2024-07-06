@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/JoinLayout.astro";
+---
+
+<Layout title="Join FreedomeE">
+  <main>
+    <div class="container">
+      <div class="join-verify">
+        <h1>Verified successfully!</h1><h2>Sign in now!</h2>
+        <div class="form">
+			<input type="hidden" id="sgn-code" value="[[code]]">
+          <div class="input">
+            <label>E-mail</label><input
+              type="email"
+              id="sgn-email"
+              placeholder="E-mail"
+            />
+          </div><div class="input">
+            <label>Password</label><input
+              type="password"
+              id="sgn-password"
+              placeholder="Password"
+            />
+          </div><button>Login</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

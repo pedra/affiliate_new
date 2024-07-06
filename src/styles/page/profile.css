@@ -1,0 +1,248 @@
+/* HEADER
+----------------------------------------------------------------------------- */
+header {
+	width: 100%;
+	padding: 0 1rem;
+	background: #def;
+	box-shadow: 0 3px 30px rgba(0,0,0,0.2);
+}
+
+header .container {
+	max-width: 998px;
+	padding: .5rem;
+}
+
+header .user {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+header .user h1 {
+	font-size: 1.6rem;
+	font-weight: 700;
+	text-align: start;	
+	flex-wrap: wrap;
+}
+
+header .user img {
+	width: 32px;
+	border-radius: 50%;
+	aspect-ratio: 1/1;
+}
+
+header .menu {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+/* MAIN
+----------------------------------------------------------------------------- */
+main {
+	width: 100%;
+}
+main .container {
+	max-width: 998px;
+}
+
+
+/* TOP-BAR TOOLS
+------------------------------------------------------------------------------*/
+.aft-top-bar,
+.aft-tools,
+.aft-search  {
+	display: flex;
+	align-items: center;
+}
+
+.aft-top-bar {
+	justify-content: space-between;
+	padding: 1rem 0.5rem;
+}
+
+.aft-top-bar h1 {
+	font-size: 3rem;
+}
+
+.aft-top-bar input,
+.aft-top-bar button {
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    color: var(--text);
+    min-height: 0;
+    min-width: 0;
+    margin: 0 !important;
+    border-radius: var(--radius-2) !important;
+}
+.aft-top-bar input {
+	padding-right: 2.1rem !important;
+}
+
+.aft-tools {
+	gap: 1rem;
+	cursor: not-allowed;
+}
+
+.aft-tools * {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.aft-search {
+
+}
+
+.aft-search button {
+	margin: 4px 0 0 -2rem !important;
+}
+
+/* AFFILIATES TABLE LIST
+------------------------------------------------------------------------------*/
+.aft-table {
+	margin: 1rem 0;
+}
+
+.aft-table table {
+	width: 100%;
+	/* min-width: 400px; */
+	border-collapse: collapse;
+}
+
+.aft-table td,
+.aft-table th {
+	padding: 0.2rem 0.5rem;
+	text-align: center;
+	border-bottom: 1px solid #aaa;
+	text-wrap: nowrap;
+}
+
+.aft-table td:first-child,
+.aft-table th:first-child {
+	text-align: start;
+	width: 100%;
+}
+.aft-table th:nth-child(3),
+.aft-table td:nth-child(3) {
+	text-align: start;
+}
+
+.aft-table td:last-child,
+.aft-table th:last-child {
+	width: 30px;
+	/* cursor: pointer; */
+}
+
+.aft-table .aft-plus {
+	cursor: pointer;
+}
+
+/* CONTROL ----------------------------- begin */
+.aft-table .control {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	color: green;
+	text-transform: capitalize;
+}
+
+.aft-table .control span {
+	font-size: 2rem;
+	cursor: pointer;
+}
+
+.aft-table .control span.off,
+.aft-table .control:has(.off) {
+	color: red;
+	opacity: 0.6;
+}
+
+.aft-table .control span.disabled,
+.aft-table .control:has(.disabled) {
+	color: #bbb;
+	cursor:not-allowed
+}
+
+/* CONTROL ----------------------------- end  */
+
+.aft-table .data {
+}
+
+.aft-table .data td {
+	box-shadow: none;
+	border: none;
+	border-radius: var(--radius-1);
+}
+
+.aft-table .data.on td {
+	box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.aft-table .data-content {
+	position: relative;
+	z-index: -200;
+	opacity: 0;
+    height: 0px;
+	padding: 0;
+	background: transparent;
+	transition: all 0.6s, height 0.1s, opacity 0.3s;
+	transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.aft-table .data.on .data-content {
+	transform: none;
+	height: auto;	
+	padding: 1rem 0.5rem 0 0.5rem;
+	opacity: 1;
+}
+
+.aft-table .data-content .top {
+	display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aft-table .data-content .top div{
+	text-wrap:balance;
+}
+
+.aft-table .data-content div {
+	font-weight: 600;
+}
+
+.aft-table .data-content div label {
+	padding: 0;
+	margin:0;
+	font-weight: 400;
+}
+
+/* PROJECT ----------------------------- begin */
+.aft-table .data .project {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: center;
+	margin: 0.5rem 0;
+}
+.aft-table .data .project span {
+	background: #def;
+	padding: 3px 1rem;
+	border-radius: var(--radius-2);
+
+	background: #479;
+	color: #fff;
+}
+/* PROJECT ----------------------------- end  */
+
+.aft-plus,
+.control span {
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}

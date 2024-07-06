@@ -1,0 +1,56 @@
+---
+import "@styles/profilestyle.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="FreedomeE Affiliate" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/icon/site.webmanifest" />
+    <link rel="mask-icon" href="/icon/safari-pinned-tab.svg" color="#299b69" />
+    <link rel="shortcut icon" href="/icon/favicon.ico" />
+    <meta name="apple-mobile-web-app-title" content="FreedomeE" />
+    <meta name="application-name" content="FreedomeE" />
+    <meta name="msapplication-TileColor" content="#00a300" />
+    <meta name="msapplication-config" content="/icon/browserconfig.xml" />
+    <meta name="theme-color" content="#1de28a" />
+  </head>
+  <body>
+    <slot />
+    <footer>
+      <a href="https://freedomee.network">
+        <img src="/img/logo.png" alt="logo" />
+      </a>
+      <div>© 2024 All rights reserved</div>
+    </footer>
+  </body>
+</html>
+
+<script src="@scripts/app.ts"></script>

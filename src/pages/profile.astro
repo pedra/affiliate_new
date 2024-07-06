@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/ProfileLayout.astro";
+---
+
+<Layout title="Welcome to Affiliate">
+  <header>
+    <div class="container">
+      <div class="user">
+        <img src="/img/logo2.png" alt="user" />
+        <h1></h1>
+      </div>
+      <div class="menu">
+        <span class="material-symbols-outlined">menu</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+		<div class="aft-top-bar">
+      		<h1>Affiliates</h1>
+			<div class="aft-tools">
+				<div class="aft-search">
+					<input placeholder="search..." disabled/>
+					<button><span class="material-symbols-outlined">search</span></button>
+				</div>
+				<button><span class="material-symbols-outlined">tune</span></button>
+			</div>
+		</div>
+		<div class="aft-table" id="affiliates"></div>
+    </div>
+  </main>
+</Layout>

@@ -59,7 +59,11 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 The ```server/php/``` directory is where the PHP server is written.
 
-The Astro build is directed to the path ```server/public/``` used by the PHP server as a deposit for static files.
+Astro's build targets the ```server/public/``` path used by the PHP server as a repository for static files. 
+
+The post-build script (```/postbuild.mjs```) locates the pages that have already been processed, replaces the ```[[name]]``` syntax with something like ```<?=$name?>``` for PHP access ("name" is any applicable variable name). The pages are moved to the ```/server/template/page/<page_name>.php``` path, for the server-side PHP domain.
+
+Deployment is done by uploading the contents of the ```server/``` folder, after processing, to a server with PHP, Apache2, and MySQL installed. The ```server/public/``` folder is exposed for public access. Everything else is behind it (protected).
 
 ### 🧞 Commands
 

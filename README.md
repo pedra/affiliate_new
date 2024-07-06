@@ -6,8 +6,8 @@
 To start local development, open a terminal and type the following (one command at a time):
 
 ```sh
-git clone https://github.com/pedra/affiliate.git
-cd affiliate
+git clone https://github.com/pedra/affiliate_new.git
+cd affiliate_new
 npm install
 npm run dev
 ```

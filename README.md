@@ -26,15 +26,19 @@ Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
-├── app/
-│   └── inc/
-│   │   └── lib/
-│   │   └── module/
+├── server/
 │   └── public/
-│   └── index.html
-│   └── .htaccess
+│   └── php/
+│       └── lib/
+│       └── module/
+│       └── template/
+│       └── .env
+│       └── router.php
+│       └──start.php
 ├── public/
-│   └── favicon.svg
+│   └── .htaccess
+│   └── index.php
+│   └── < static files: css|js|img|etc... >
 ├── src/
 │   ├── components/
 │   │   └── Card.astro
@@ -43,6 +47,8 @@ Inside of your Astro project, you'll see the following folders and files:
 │   └── pages/
 │       └── index.astro
 └── package.json
+└── astro.config.mjs
+└── postbuild.mjs
 ```
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
@@ -51,9 +57,9 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-The ```app/``` directory is where the PHP server is written.
+The ```server/php/``` directory is where the PHP server is written.
 
-The Astro build is directed to the path ```app/public/``` used by the PHP server as a deposit for static files.
+The Astro build is directed to the path ```server/public/``` used by the PHP server as a deposit for static files.
 
 ### 🧞 Commands
 
@@ -67,7 +73,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run php` 			| Start local PHP server at `localhost` (./app)    |
+| `npm run php` 			      | Start local PHP server at `localhost`            |
 
 ### 👀 Want to learn more?
 

@@ -15,25 +15,7 @@ class BasePage
 		$this->db = new Mysql();
 	}
 
-	public function userData($params, $queries)
-	{
-		//(new Auth)->check();
-		if (!isset($_POST['link']))
-			return false;
-
-		$link = $_POST['link'];
-		$sql =
-			"select id, name
-			from user
-			where code = :link";
-		$res = $this->db->query($sql, [":link" => $link]);
-		if (isset($res[0]))
-			return $res[0];
-		return false;
-	}
-
-
-	public function notFound($params, $queries)
+	public function notFound($params, $queries, $post)
 	{
 		header('HTTP/1.1 404 Not Found');
 		header('Status: 404 Not Found');

@@ -102,8 +102,8 @@ export default class HomeClass {
 		
 		if(f.status != 200) return __report('Login failed!')
 		const res = await f.json()
-		if(res && res.data){
-			if(res.data.id && res.data.name) {
+		if(res){
+			if(res.id && res.name) {
 				location.href = '/profile'
 			}
 		}

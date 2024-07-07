@@ -58,6 +58,7 @@ main .container {
 .aft-top-bar {
 	justify-content: space-between;
 	padding: 1rem 0.5rem;
+	flex-wrap: wrap;
 }
 
 .aft-top-bar h1 {

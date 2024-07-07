@@ -138,8 +138,8 @@ function postRequest($url, $data)
 // TOOLS ---------------------------------------------------------------------*/
 function debug($var, $exit = false)
 {
-	$o = '<div><b>' . date("Y-m-d H:i:s") . '</b><br><pre style="border:1px solid #000">' . print_r($var, true) . '</pre></div>';
-	file_put_contents(PATH_ROOT . '/debug.html', $o, FILE_APPEND);
+	$o = '<div><b>' . date("Y-m-d H:i:s") . '</b><br><pre style="border:1px solid #000;padding:1rem;font-family:monospace,sans-serif">' . print_r($var, true) . '</pre></div>';
+	file_put_contents(PATH_PUBLIC . '/debug.html', $o, FILE_APPEND);
 	if ($exit) exit(print_r($var, true));
 }
 

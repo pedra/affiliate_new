@@ -8,12 +8,13 @@ class Router
 	private $method = '';
 	private $path = [];
 
-	public $controller = '\Module\Page';
-	public $action = 'home';
-	public $params = [];
-	public $queries = [];
-	public $error = false;
-	public $return = '';
+	private $controller = '\Module\Page';
+	private $action = 'home';
+	private $params = [];
+	private $query = [];
+	private $post = [];
+	private $error = false;
+	private $return = '';
 
 	public function __construct($path = null)
 	{
@@ -23,7 +24,7 @@ class Router
 			'delete' => []
 		];
 		$this->method = strtolower($_SERVER['REQUEST_METHOD'] ?? 'get');
-		$this->path = explode('/', $path ?? trim($_SERVER['REQUEST_URI'] ?? '/', '/'));
+		$this->path = explode('/', trim($_SERVER['PATH_INFO'] ?? '', '/'));
 	}
 
 	public function get($url, $ctrl = null, $act = null)
@@ -68,7 +69,8 @@ class Router
 		$this->controller = '\Module\Index';
 		$this->action = 'index';
 		$this->params = [];
-		$this->queries = $_GET;
+		$this->query = $_GET;
+		$this->post = $_POST;
 
 		$dec = $this->searchRouter($this->routers);
 		if ($dec) {
@@ -77,6 +79,8 @@ class Router
 			if ($dec[2]) $this->params = $dec[2];
 			return $this;
 		}
+
+		exit('fudeu!');
 
 		// Second Router search
 		$ac = '';
@@ -91,7 +95,6 @@ class Router
 
 			$this->params = $this->path;
 		}
-		e($this, true);
 		return $this;
 	}
 
@@ -110,9 +113,9 @@ class Router
 		$action = $this->action;
 		if ($controller && is_object($controller)) {
 			if (method_exists($controller, $this->action))
-				$this->return = $controller->$action($this->params, $this->queries);
+				$this->return = $controller->$action($this->params, $this->query, $this->post);
 			elseif (method_exists($controller, 'index'))
-				$this->return = $controller->index($this->params, $this->queries);
+				$this->return = $controller->index($this->params, $this->query, $this->post);
 			else {
 				$this->error = true;
 				return $this->send();
@@ -145,26 +148,16 @@ class Router
 			return false;
 		}
 
-	public function send($data = [], $error = false)
+	public function send($data = [])
 	{
-		$error = $error === false ? $this->error : $error;
-
 		header('Content-Type: application/json');
-		if ($error || $data === false) {
+		if ($this->error || $data === false) {
 			header('HTTP/1.1 404 Not Found');
 			ob_end_clean();
 		} else {
 			header('HTTP/1.1 200 OK');
-			echo json_encode(["data" => $data, "error" => $error]);
+			echo json_encode($data);
 		}
 		exit();
-	}
-
-	// -------------------------------------------------------------- UTILS
-	public function e($o = null, $exit = false)
-	{
-		echo "<pre>" . print_r($o === null ? $this : $o, 1) . "</pre>";
-		$exit && exit();
-		return $this;
 	}
 }

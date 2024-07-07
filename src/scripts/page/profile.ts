@@ -17,6 +17,8 @@ export default class ProfileClass {
 		name: '',
 		level: 'user',
 		action: '',
+		link: '',
+		code: '',
 	}
 	
 	state = {
@@ -70,17 +72,16 @@ export default class ProfileClass {
 			const f = await fetch(`${this.Api}/a/affiliates`)
 			const j = await f.json()
 
-			if( j && 
-				j.error == false && 
-				j.data
-			){
-				if(j.data.error == false && j.data.data){
-					const d = j.data.data
+			if( j ){
+				if(j.error == false && j.data){
+					const d = j.data
 					this.user = {
 						id: d.id,
 						name: d.name,
 						level: d.level,
-						action: d.level == 'user' ? 'approved' : 'enabled'
+						action: d.level == 'user' ? 'approved' : 'enabled',
+						link: d.link,
+						code: d.code
 					}
 					this.data.registered = d.registered ?? []
 					this.data.verified = d.verified ?? []
@@ -89,7 +90,7 @@ export default class ProfileClass {
 
 					return this.mountAffiliates()
 				}	
-				if(j.data.error == true && j.data.msg) return this.mountAffiliates(j.data.msg)
+				if(j.error == true && j.msg && j.link) return this.mountAffiliates(j.msg, j.link)
 			}
 		} catch(e){}
 
@@ -97,9 +98,9 @@ export default class ProfileClass {
 		return false
 	}
 
-	mountAffiliates(msg: string | boolean = false) {
+	mountAffiliates(msg: string | boolean = false, link: string | boolean = false) {
 		if (msg) {
-			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty">${msg}</div>`
+			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty">${msg}<br>Share your invite link to get your affiliates: <b>${link}</b></div>`
 			return false
 		}
 
@@ -167,9 +168,9 @@ export default class ProfileClass {
 				body: frm
 			})
 			const j = await f.json()
-			if(j && j.error == false && j.data) {
-				if(j.data.error) this.init()
-				__report(j.data.msg, 'info')
+			if(j) {
+				if(j.error) this.init()
+				__report(j.msg, 'info')
 			}
 		} catch(e){
 			this.init()

@@ -14,13 +14,13 @@ class User {
 		$this->db = new Mysql();
 	}
 
-	public function getUserByLink($params, $queries)
+	public function getUserByLink($params, $queries, $post)
 	{
 		(new Auth)->check();
 
-		if(!isset($_POST['link'])) return false;
+		if(!isset($post['link'])) return false;
 
-		$link = $_POST['link'];
+		$link = $post['link'];
 		$sql = 
 		"select id, name
 			from user
@@ -30,39 +30,39 @@ class User {
 		return false;
 	}
 
-	public function submit($params, $queries)
+	public function submit($params, $queries, $post)
 	{
-		if(!isset($_POST['name']) && $_POST['name'] != '')
+		if(!isset($post['name']) && $post['name'] != '')
 			return ['error' => true, 'msg' => '"Name" cannot be empty!'];
-		if(!isset($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+		if(!isset($post['email']) && !filter_var($post['email'], FILTER_VALIDATE_EMAIL))
 			return ['error' => true, 'msg' => '"Email" is not valid!'];
-		if(!isset($_POST['password']) && strlen($_POST['password']) < 8)
+		if(!isset($post['password']) && strlen($post['password']) < 8)
 			return ['error' => true, 'msg' => '"Password" must be at least 8 characters!'];
-		if(!isset(($_POST['country'])) && !$this->countryExists(0 + $_POST['country'])) 
+		if(!isset(($post['country'])) && !$this->countryExists(0 + $post['country'])) 
 			return ['error' => true, 'msg' => '"Country" is not valid!'];
-		if(!isset($_POST['phone']) && strlen($_POST['phone']) < 6)
+		if(!isset($post['phone']) && strlen($post['phone']) < 6)
 			return ['error' => true, 'msg' => '"Phone" must be at least 6 characters!'];
-		if(!isset($_POST['company']) && strlen($_POST['company']) < 6)
+		if(!isset($post['company']) && strlen($post['company']) < 6)
 			return ['error' => true, 'msg' => '"Company" must be at least 6 characters!'];
-		if(!isset($_POST['projects']) && !str_contains($_POST['projects'], 'around'))
+		if(!isset($post['projects']) && !str_contains($post['projects'], 'around'))
 			return ['error' => true, 'msg' => '"Projects" must contain "around"!'];
-		if(!isset($_POST['affiliate']) && $_POST['affiliate'] == '')
+		if(!isset($post['affiliate']) && $post['affiliate'] == '')
 			return ['error' => true, 'msg' => 'This affiliate is not enabled!<br>Check if the <b>link</b> is correct or contact us.'];
 		
-		$affiliate = trim($_POST['affiliate']);
+		$affiliate = trim($post['affiliate']);
 		if(!$this->userExists($affiliate))
 			return ['error' => true, 'msg' => 'This affiliate is not enabled!<br>Check if the <b>link</b> is correct or contact us.'];
 
-		$name = trim($_POST['name']);
-		$email = trim($_POST['email']);
+		$name = trim($post['name']);
+		$email = trim($post['email']);
 		if($this->emailExists($email))
 			return ['error' => true, 'msg' => 'Email already exists!'];
 
-		$password = trim($_POST['password']);
-		$country = 0 + $_POST['country'];
-		$phone = trim($_POST['phone']);
-		$company = trim($_POST['company']);
-		$projects = trim($_POST['projects']);
+		$password = trim($post['password']);
+		$country = 0 + $post['country'];
+		$phone = trim($post['phone']);
+		$company = trim($post['company']);
+		$projects = trim($post['projects']);
 
 		$verification_key = rand(100000, 999999);
 		$verification_link = uniqid();
@@ -255,11 +255,11 @@ class User {
 	}
 
 
-	public function verify ($params, $queries)
+	public function verify ($params, $queries, $post)
 	{
-		if(!isset($_POST['code'])) return false;
+		if(!isset($post['code'])) return false;
 
-		$code = trim($_POST['code']);
+		$code = trim($post['code']);
 
 		$res = $this->db->query(
 			"select id, verified
@@ -271,19 +271,19 @@ class User {
 		return ['error' => true, 'verified' => false];
 	}
 
-	public function setStatus ($params, $queries)
+	public function setStatus ($params, $queries, $post)
 	{
 		$user = (new Auth)->check(true);
 		if($user === false) return ['error' => true, 'msg' => 'Authentication error (1)'];
 
-		if(!isset($_POST['id']) || 
-			!isset($_POST['state']) || 
-			($_POST['state'] != 'approved' && $_POST['state'] != 'enabled') ||
-			!isset($_POST['set'])) return ['error' => true, 'msg' => 'Authentication error (2)'];
+		if(!isset($post['id']) || 
+			!isset($post['state']) || 
+			($post['state'] != 'approved' && $post['state'] != 'enabled') ||
+			!isset($post['set'])) return ['error' => true, 'msg' => 'Authentication error (2)'];
 
-		$id = 0 + $_POST['id'];
-		$state = $_POST['state'];
-		$set = $_POST['set'] == '1' ? true : false;
+		$id = 0 + $post['id'];
+		$state = $post['state'];
+		$set = $post['set'] == '1' ? true : false;
 
 		$res = $this->db->query(
 			"select id, name, email, code, secpass, projects 
@@ -319,9 +319,16 @@ class User {
 
 
 	///// DEBUG
-	function TEST ($params, $queries)
+	function TEST ($params, $queries, $post)
 	{
-		$res = $this->db->query('select * from user');
-		return ['test' => $res];
+		//return 'Paulo';
+		return [
+			'params' => $params, 
+			'queries' => $queries, 
+			'GET' => $_GET, 
+			'POST' => $post
+		];
+		//$res = $this->db->query('select * from user');
+		//return ['test' => $res];
 	}
 }

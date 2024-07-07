@@ -10,7 +10,7 @@ class Home extends BasePage {
 		parent::__construct();
 	}
 	
-	public function index($params, $queries) 
+	public function index($params, $queries, $post) 
 	{
 		include_once PATH_TEMPLATE . '/page/index.php';
 		exit('chegou');

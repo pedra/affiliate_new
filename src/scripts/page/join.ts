@@ -74,14 +74,14 @@ export default class JoinClass {
 		try{
 			const f = await fetch(this.Api + '/a/submit', { method: 'POST', body: frm })
 			const j = await f.json()
-			if(j && j.error === false && j.data && j.data.error === false){
+			if(j && j.error === false){
 				__glass(false)
-				return this.pageCode(j.data)
+				return this.pageCode(j)
 			}
 
-			if(j && j.data && j.data.msg) {
+			if(j && j.msg) {
 				__glass(false)
-				__report(j.data.msg)
+				__report(j.msg)
 			}
 
 		}catch(e){}
@@ -223,8 +223,8 @@ export default class JoinClass {
 			const f = await fetch(this.Api + '/a/countries')
 			const j = await f.json()
 		
-			if(j && j.error == false && j.data){
-				this.countries = j.data
+			if(j && j.length > 0){
+				this.countries = j
 				return true
 			}
 		} catch(e){}
@@ -274,8 +274,7 @@ export default class JoinClass {
 			const j = await f.json()
 			if(	j && 
 				j.error == false && 
-				j.data && 
-				j.data.verified == true ){
+				j.verified == true ){
 				__glass(false)
 				return this.pageLogin(code)
 			}
@@ -334,7 +333,7 @@ export default class JoinClass {
 			}
 
 			const res = await f.json()
-			if (res && res.data && res.data.id && res.data.name) {
+			if (res && res.id && res.name) {
 				location.href = '/profile'
 			}
 		} catch(e){}

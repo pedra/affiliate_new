@@ -41,7 +41,7 @@ export default class JoinClass {
 			}
 
 			const res = await f.json()
-			if (res && res.data && res.data.id && res.data.name)
+			if (res && res.id && res.name)
 				location.href = '/profile'
 		} catch(e){}
 

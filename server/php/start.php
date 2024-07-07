@@ -1,8 +1,8 @@
 <?php
 define('PATH_ROOT', dirname(__FILE__));
-define('PATH_PUBLIC', dirname(PATH_ROOT) . '/public');
-define('PATH_TEMPLATE', PATH_ROOT . '/template');
 define('ENV', parse_ini_file(PATH_ROOT . "/.env"));
+define('PATH_TEMPLATE', PATH_ROOT . '/template');
+define('PATH_PUBLIC', realpath(ENV['PUBLIC_PATH']));
 
 // Helpers ---------------------------------------------------------------------
 include_once PATH_ROOT . '/lib/utils.php';

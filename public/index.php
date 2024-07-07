@@ -1,2 +1,1 @@
-<?php
-include_once dirname(__DIR__) . "/app/index.php";
+<?php include_once dirname(__DIR__) . "/php/start.php";

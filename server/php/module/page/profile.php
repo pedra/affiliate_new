@@ -11,7 +11,7 @@ class Profile extends BasePage {
 		parent::__construct();
 	}
 
-	public function index($params, $queries)
+	public function index($params, $queries, $post)
 	{
 		$user = (new Auth)->check();
 		$id = $user['id'];
@@ -21,7 +21,7 @@ class Profile extends BasePage {
 		exit();
 	}
 
-	public function affiliates($params, $queries)
+	public function affiliates($params, $queries, $post)
 	{
 		$user = (new Auth)->check();
 		$id = $user['id'];
@@ -89,6 +89,10 @@ class Profile extends BasePage {
 				'registered' => $registered
 			]];
 		}
-		return ['error' => true, 'msg' => 'No Affiliates founded!'];
+		return [
+			'error' => true, 
+			'msg' => 'No Affiliates founded!', 
+			'link' => $user['link']
+		];
 	}
 }

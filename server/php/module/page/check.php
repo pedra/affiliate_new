@@ -10,7 +10,7 @@ class Check extends BasePage {
 		parent::__construct();
 	}
 
-	public function index($params, $queries)
+	public function index($params, $queries, $post)
 	{
 		$code = $params[0] ?? false;
 		if(!$code) return goToHome();

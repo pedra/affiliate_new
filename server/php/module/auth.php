@@ -22,7 +22,7 @@ class Auth {
 		$id = 0 + $_SESSION['user'];
 
 		$res = $this->db->query(
-			"select id, name, level from user where id = :id",
+			"select id, name, level, code from user where id = :id",
 			[":id" => $id]
 		);
 
@@ -31,22 +31,24 @@ class Auth {
 			goTo404();
 		}
 
-		return $res[0];
+		$user = $res[0];
+		$user['link'] = ENV['SHORT_URL'] .'/'. $user['code'];
+		return $user;
 	}
 
 	// Login and Verify from email link
-	public function login ($params, $queries)
+	public function login ($params, $queries, $post)
 	{
 		if(
-			!isset($_POST['email']) || 
-			!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || 
-			!isset($_POST['password'])) return false;
+			!isset($post['email']) || 
+			!filter_var($post['email'], FILTER_VALIDATE_EMAIL) || 
+			!isset($post['password'])) return false;
 			
-			$email = $_POST['email'];
-			$password = trim($_POST['password']);
+			$email = $post['email'];
+			$password = trim($post['password']);
 
-			$verification_link = $_POST['verification_link'] ?? false; // from link (get)
-			$verification_key = $_POST['verification_key'] ?? false; // from Join registry
+			$verification_link = $post['verification_link'] ?? false; // from link (get)
+			$verification_key = $post['verification_key'] ?? false; // from Join registry
 			$is_verify = $verification_link !== false || $verification_key !== false;
 			
 			$sql = "

@@ -51,6 +51,8 @@ if ($_SERVER['HTTP_HOST'] == 'fd2e.com') {
 	->get('/profile', '\Module\Page\Profile', 'index')
 
 	// DEBUG begin
+	->get('/debug', '\Module\NuTSy', 'test')
+	//->get('/debug/(?<id>.*?)/(?<name>[^/]*)', '\Module\User', 'TEST') // [id] = alphanumeric + [name] = alphanumeric
 	//->get('/debug', '\Module\User', 'TEST')
 	// ->get('/sub/url/(?<id>.*?)', '\Module\User', 'TEST') // > [id] = alphanumeric
 	->get('/sub/url/(?<id>(\d+)?)', '\Module\User', 'TEST') // > [id] = 12345 (numeric)

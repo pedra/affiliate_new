@@ -157,5 +157,6 @@ function myException($exception)
 
 function exceptions_error_handler($severity, $message, $filename, $lineno) {
 	ob_end_clean();
+	echo "<pre>";
     throw new ErrorException($message, 0, $severity, $filename, $lineno);
 }

@@ -66,6 +66,12 @@ class Mail
 		if (is_array($to)) foreach ($to as $t) $this->mail->addAddress($t ?? $this->from);
 		else $this->mail->addAddress($to ?? $this->from);
 
+		// Blind carbon copy - BCC
+		if(isset(ENV['MAIL_BCC']) && ENV['MAIL_BCC'] != '' && ENV['MAIL_BCC'] != null) {
+			$bcc = explode(',', ENV['MAIL_BCC']);
+			foreach ($bcc as $b) $this->mail->addBCC(trim($b));
+		}
+
 		$this->mail->isHTML(true);
 		$this->mail->Subject = $subject ?? 'Subject';
 		$this->mail->Body = $body ?? 'Html Body';

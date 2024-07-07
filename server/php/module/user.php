@@ -64,7 +64,7 @@ class User {
 		$company = trim($post['company']);
 		$projects = trim($post['projects']);
 
-		$verification_key = rand(100000, 999999);
+		$verification_key = random_int(100000, 999999);
 		$verification_link = uniqid();
 
 		$res = 72456;
@@ -106,8 +106,7 @@ class User {
 		]);
 
 		if($res) {
-			$can = new \Lib\Can();
-			$code = $can->encode($res) . $can->encode(rand(1000, 9990));
+			$code = (new \Lib\NuTSy)->mask($res);
 			$sql = "update user
 					set code=:code
 					where id=:id";
@@ -168,10 +167,6 @@ class User {
 
 	public function emailExists($email)
 	{
-		// DEVELOP ONLY - BEGIN
-		if ($email == 'email@.email.com') return false;
-		// DEVELOP ONLY - END
-
 		$sql =
 		"select id
 			from user
@@ -181,20 +176,11 @@ class User {
 		return false;
 	}
 
-	public function sendMailVerification ($email, $verification_key, $link)
+	public function sendMailVerification ($to, $verification_key, $link)
 	{
-		$mail = new Mail();
 		include PATH_TEMPLATE.'/mail/verify.php';
 
-		// DEVELOP ONLY - BEGIN
-		$to = [
-			'paulo.rocha@outlook.com',
-			'ahcordesign@gmail.com'
-		];
-		if (!str_contains($email, '@email.com')) array_push($to, $email);
-		// DEVELOP ONLY - END
-
-		return $mail->send(
+		return (new Mail())->send(
 			$to,
 			$subject,			
 			$body,
@@ -215,13 +201,13 @@ class User {
 		 */
 
 		$name = $data['name'];
-		$email = $data['email'];
+		$to = $data['email'];
 		$link = ENV['SHORT_URL'] . '/' . $data['code'];
 		$projects = explode(',', $data['projects']);
 
 		// 1
 		$d = [
-			'email' => $email,
+			'email' => $to,
 			'password' => secured_decrypt($data['secpass']).'1234',
 			'affiliate_code' => $link,
 			'name' => $name . ' TEST'
@@ -234,18 +220,9 @@ class User {
 
 		// 2
 		$name = mb_convert_encoding($name, 'ISO-8859-1', 'UTF-8');
-		$mail = new Mail();
 		include PATH_TEMPLATE . '/mail/welcome_kit.php';
 
-		// DEVELOP ONLY - BEGIN
-		$to = [
-			'paulo.rocha@outlook.com',
-			'ahcordesign@gmail.com'
-		];
-		if(!str_contains($email, '@email.com')) array_push($to, $email);
-		// DEVELOP ONLY - END
-
-		return $mail->send(
+		return (new Mail())->send(
 			$to,
 			$subject,
 			$body,
@@ -253,7 +230,6 @@ class User {
 			//PATH_PUBLIC . '/PT Estrutura Freedom eE.pdf'
 		);
 	}
-
 
 	public function verify ($params, $queries, $post)
 	{

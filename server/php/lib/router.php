@@ -8,8 +8,10 @@ class Router
 	private $method = '';
 	private $path = [];
 
-	private $controller = '\Module\Page';
-	private $action = 'home';
+	private $defaultController = '\Module\Page\Home';
+	private $defaultAction = 'notFound';
+	private $controller = null;
+	private $action = null;
 	private $params = [];
 	private $query = [];
 	private $post = [];
@@ -25,6 +27,8 @@ class Router
 		];
 		$this->method = strtolower($_SERVER['REQUEST_METHOD'] ?? 'get');
 		$this->path = explode('/', trim($_SERVER['PATH_INFO'] ?? '', '/'));
+		$this->controller = $this->defaultController;
+		$this->action = $this->defaultAction;
 	}
 
 	public function get($url, $ctrl = null, $act = null)
@@ -52,8 +56,11 @@ class Router
 
 	private function config($method, $url, $ctrl, $act)
 	{
+		$url = trim($url, '/');
 		$this->routers[$method][$url] = [
-			$ctrl ?? $this->controller,
+			$ctrl = is_callable($ctrl) || 
+					(is_string($ctrl) && strlen($ctrl) > 0) || 
+					is_bool($ctrl) ? $ctrl : $this->controller,
 			$act ?? $this->action
 		];
 		return $this;
@@ -66,34 +73,16 @@ class Router
 
 	public function resolve()
 	{
-		$this->controller = '\Module\Index';
-		$this->action = 'index';
-		$this->params = [];
 		$this->query = $_GET;
 		$this->post = $_POST;
 
 		$dec = $this->searchRouter($this->routers);
 		if ($dec) {
 			if ($dec[0]) $this->controller = $dec[0];
+			if($dec[0] === false) $this->controller = false;
 			if ($dec[1]) $this->action = $dec[1];
 			if ($dec[2]) $this->params = $dec[2];
 			return $this;
-		}
-
-		exit('fudeu!');
-
-		// Second Router search
-		$ac = '';
-		foreach ($this->path as $k => $v) {
-			$ac .= '/' . strtolower($v);
-			if (isset($this->routers[$this->method][$ac])) {
-				$this->controller = $this->routers[$this->method][$ac][0];
-				$this->action = $this->routers[$this->method][$ac][1];
-				$this->params = array_slice($this->path, $k + 1);
-				break;
-			}
-
-			$this->params = $this->path;
 		}
 		return $this;
 	}
@@ -103,6 +92,22 @@ class Router
 		$this->return = null;
 		$this->error = false;
 
+		// Static page...
+		if($this->controller === false){
+			$page = PATH_TEMPLATE . '/' . $this->action;
+			if(file_exists($page)) {
+				include_once $page;
+				exit;
+			}
+			$this->controller = $this->defaultController;
+			$this->action = $this->defaultAction;
+		}
+
+		// Anonymous functions as controller
+		if(is_callable($this->controller))			
+			return $this->send(($this->controller)($this->params, $this->query, $this->post));
+
+		// Class exists?
 		if (class_exists($this->controller)) {
 			$controller = new $this->controller;
 		} else {
@@ -110,6 +115,7 @@ class Router
 			return $this->send();
 		}
 
+		// Action exists?
 		$action = $this->action;
 		if ($controller && is_object($controller)) {
 			if (method_exists($controller, $this->action))

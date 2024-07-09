@@ -103,7 +103,7 @@ if ($_SERVER['HTTP_HOST'] == 'fd2e.com') {
 
 
 	/**
-		Router Syntax --
+	---	Router Syntax ---
 
 	(new Lib\Router())  // Call Router ...
 	->< verb > ('< path >', '\< namespace ~ >\< class >', '< action/method >' )

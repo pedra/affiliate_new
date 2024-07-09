@@ -13,7 +13,7 @@ const App = new class AppClass {
 		path: string,
 		view: any,
 	}[] = []
-	api: string = 'http://localhost'
+	api: string = ''
 
 	constructor() {
 		this.pages.push({ name: 'Home', path: '/', view: new HomeClass(this) })

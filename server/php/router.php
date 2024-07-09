@@ -96,8 +96,8 @@ if ($_SERVER['HTTP_HOST'] == 'fd2e.com') {
 	->get('/c/(.*)', '\Module\Page\Join', 'index')
 	
 	// Show "home" page if no route is found
-	->get('/404', '\Module\Page\BasePage', 'notFound')
-	->get('(.*)', '\Module\Page\Home', 'notFound')
+	->get('/404', '\Module\Page\BasePage', 'notFounds')
+	->get('(.*)', '\Module\Page\Homes', 'notFounds')
 	->run();
 
 

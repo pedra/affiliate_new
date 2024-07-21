@@ -94,6 +94,9 @@ if ($_SERVER['HTTP_HOST'] == 'fd2e.com') {
 	
 	// Join by affiliate link
 	->get('/c/(.*)', '\Module\Page\Join', 'index')
+
+	// Ping
+	->get('/ping', '\Module\Ping', 'index')
 	
 	// Show "home" page if no route is found
 	->get('/404', '\Module\Page\BasePage', 'notFounds')

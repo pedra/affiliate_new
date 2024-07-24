@@ -91,7 +91,7 @@ class Profile extends BasePage {
 		}
 		return [
 			'error' => true, 
-			'msg' => 'No Affiliates founded!', 
+			'msg' => 'No affiliates found.', 
 			'link' => $user['link']
 		];
 	}

@@ -100,7 +100,7 @@ export default class ProfileClass {
 
 	mountAffiliates(msg: string | boolean = false, link: string | boolean = false) {
 		if (msg) {
-			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty">${msg}<br>Share your invite link to get your affiliates: <b>${link}</b></div>`
+			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty">${msg}<br>Share your COLLABOCRATIC invite link to multiply commercial opportunities and scale your interconnected revenue streams: <b>${link}</b>.<br>Be Free, Be Freedom eE!</div>`
 			return false
 		}
 

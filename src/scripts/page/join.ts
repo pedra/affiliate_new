@@ -236,9 +236,9 @@ export default class JoinClass {
 		__('main .container').innerHTML = ''
 
 		const h1 = __c('h1', {}, 'Thank you for registering!')
-		const p1 = __c('p', {}, 'Your personal sharing link is: <b>' + data.link + ' </b>')
-		const p2 = __c('p', {}, '-- Share it all over the planet!')
-		const p3 = __c('p', {}, 'We have sent a verification code to your email.<br>Enter the code below:')
+		const p1 = __c('p', {}, 'Your personal COLLABOCRATIC Link is: <b>' + data.link + ' </b>')
+		const p2 = __c('p', {}, 'Share it with responsible entrepreneurs, opinion makers, investors and consumers. We have sent a verification code to your email. Please check your spam folder as well.')
+		const p3 = __c('p', {}, 'Enter the code below.')
 
 		const ip = __c('input', {id: 'verify-code', placeholder: '999999'})
 		const bt = __c('button', {}, 'Verify')

@@ -208,7 +208,7 @@ class User {
 		// 1
 		$d = [
 			'email' => $to,
-			'password' => secured_decrypt($data['secpass']).'1234',
+			'password' => secured_decrypt($data['secpass']),
 			'affiliate_code' => $link,
 			'name' => $name . ' TEST'
 		];
@@ -291,20 +291,5 @@ class User {
 			if($wk) return ['error' => false, 'msg' => 'Status updated!'];			
 		}
 		return ['error' => true, 'msg' => "I couldn't change..."];
-	}
-
-
-	///// DEBUG
-	function TEST ($params, $queries, $post)
-	{
-		//return 'Paulo';
-		return [
-			'params' => $params, 
-			'queries' => $queries, 
-			'GET' => $_GET, 
-			'POST' => $post
-		];
-		//$res = $this->db->query('select * from user');
-		//return ['test' => $res];
 	}
 }

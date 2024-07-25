@@ -85,10 +85,8 @@ class Mail
 		
 		try {
 			return $this->mail->send();
-			return true;
 		} catch (Exception $e) {
 			return $this->error = $this->mail->ErrorInfo;
-			return false;
 		}
 	}
 }

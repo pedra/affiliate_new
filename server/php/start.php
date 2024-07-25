@@ -8,8 +8,8 @@ define('PATH_PUBLIC', realpath(ENV['PUBLIC_PATH']));
 include_once PATH_ROOT . '/lib/utils.php';
 
 // Error settings --------------------------------------------------------------
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
+ini_set('display_errors', ENV['PRODUCTION'] ? '0' : '1');
+ini_set('display_startup_errors', ENV['PRODUCTION'] ? '0' : '1');
 error_reporting(E_ALL);
 set_error_handler('exceptions_error_handler');
 

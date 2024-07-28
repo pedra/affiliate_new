@@ -60,6 +60,7 @@ main {
 	position: relative;
 	z-index: 100;
 	flex: 1;
+	overflow: auto;
 }
 
 main .container {

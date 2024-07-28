@@ -31,6 +31,9 @@ class Profile extends BasePage {
 		$res = $this->db->query(
 			"select 
 				u.id uid,
+				a.name aname,
+                a.code acode,
+                a.email aemail,
 				u.level level,
 				u.verified verified,
 				u.approved approved,
@@ -46,7 +49,8 @@ class Profile extends BasePage {
 				u.secpass secpass
 
 			from user u
-			left join country c on c.id = u.country " . 
+			left join country c on c.id = u.country 
+			left join user a on a.id = u.affiliate " . 
 			($level < 20 ? " where u.affiliate = :id" : ""), 
 			 $level < 20 ? [':id' => $id] : []
 		);

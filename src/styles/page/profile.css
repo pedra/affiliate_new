@@ -175,10 +175,11 @@ main .container {
 	box-shadow: none;
 	border: none;
 	border-radius: var(--radius-1);
+	padding: 0;
 }
 
 .aft-table .data.on td {
-	box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+	/* box-shadow: 0 10px 30px rgba(0,0,0,0.4); */
 }
 
 .aft-table .data-content {
@@ -194,12 +195,18 @@ main .container {
 
 .aft-table .data.on .data-content {
 	transform: none;
-	height: auto;	
-	padding: 1rem 0.5rem 0 0.5rem;
-	opacity: 1;
+    height: auto;
+    padding: 1rem 1rem 0 1rem;
+    opacity: 1;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.2);
+	background: #fff;
 }
 
-.aft-table .data-content .top {
+.aft-table .data-content .top,
+.aft-table .data-content .bottom  {
 	display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -207,9 +214,18 @@ main .container {
     align-items: center;
 }
 
-.aft-table .data-content .top div{
+.aft-table .data-content .top div,
+.aft-table .data-content .bottom div {
 	text-wrap:balance;
 }
+
+.aft-table .data-content .bottom {
+    margin: 0.5rem -1rem 0 -1rem;
+    padding: 1rem;
+    border-top: 2px dashed #bcd;
+    background: #def;
+}
+
 
 .aft-table .data-content div {
 	font-weight: 600;
@@ -225,8 +241,8 @@ main .container {
 .aft-table .data .project {
 	display: flex;
 	gap: 0.5rem;
-	justify-content: center;
-	margin: 0.5rem 0;
+	/* justify-content: center; */
+	margin: 1rem 0;
 }
 .aft-table .data .project span {
 	background: #def;
@@ -246,4 +262,23 @@ main .container {
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
+}
+
+/* EMPTY -------------------------------------------------------------------- */
+.aft-empty {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.aft-empty p:first-child {
+    color: red;
+    font-weight: bold;
+}
+
+.aft-empty b {
+    border: 2px dashed #bcd;
+    background: #def;
+    padding: 1rem;
+    font-size: 1.2rem;
 }

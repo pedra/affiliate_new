@@ -7,6 +7,7 @@ if ($_SERVER['HTTP_HOST'] == 'fd2e.com') {
 
 // ROUTER ----------------------------------------------------------------------
 (new Lib\Router())
+	->get('/xxx/(.*)', '\Module\User', 'xxx')
 	// Page
 	->get('/', '\Module\Page\Home', 'index')
 	->get('/profile', '\Module\Page\Profile', 'index')

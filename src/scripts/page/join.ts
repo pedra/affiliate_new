@@ -237,8 +237,9 @@ export default class JoinClass {
 
 		const h1 = __c('h1', {}, 'Thank you for registering!')
 		const p1 = __c('p', {}, 'Your personal COLLABOCRATIC Link is: <b>' + data.link + ' </b>')
-		const p2 = __c('p', {}, 'Share it with responsible entrepreneurs, opinion makers, investors and consumers. We have sent a verification code to your email. Please check your spam folder as well.')
-		const p3 = __c('p', {}, 'Enter the code below.')
+		const p2 = __c('p', {}, 'Share it with responsible entrepreneurs, opinion makers, investors and consumers.')
+		const p3 = __c('p', {}, 'We have sent a verification code to your email. Please check your spam folder as well.')
+		const p4 = __c('p', {}, 'Enter the code below.')
 
 		const ip = __c('input', {id: 'verify-code', placeholder: '999999'})
 		const bt = __c('button', {}, 'Verify')
@@ -246,7 +247,7 @@ export default class JoinClass {
 		ci.append(ip, bt)
 
 		const jv = __c('div', { class: "join-verify" })
-		jv.append(h1, p1, p2, p3, ci)
+		jv.append(h1, p1, p2, p3, p4, ci)
 		 __('.container').append(jv)
 
 		__e(() => this.verify(), bt)

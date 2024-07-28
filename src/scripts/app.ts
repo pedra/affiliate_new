@@ -20,7 +20,7 @@ const App = new class AppClass {
 		this.pages.push({ name: 'Profile', path: '/profile', view: new ProfileClass(this) })
 		this.pages.push({ name: 'Profile2', path: '/profile2', view: new Profile2Class(this) })
 		this.pages.push({ name: 'Join', path: '/c', view: new JoinClass(this) })
-		this.pages.push({ name: 'Check', path: '/check', view: new CheckClass(this) })
+		this.pages.push({ name: 'Check', path: '/v', view: new CheckClass(this) })
 		this.router()
 	}
 

@@ -19,6 +19,9 @@ export default class ProfileClass {
 		action: '',
 		link: '',
 		code: '',
+		aname: '',
+		acode: '',
+		aemail: ''
 	}
 	
 	state = {
@@ -81,7 +84,10 @@ export default class ProfileClass {
 						level: d.level,
 						action: d.level == 'user' ? 'approved' : 'enabled',
 						link: d.link,
-						code: d.code
+						code: d.code,
+						aname: d.aname,
+						acode: d.acode,
+						aemail: d.aemail
 					}
 					this.data.registered = d.registered ?? []
 					this.data.verified = d.verified ?? []
@@ -100,7 +106,7 @@ export default class ProfileClass {
 
 	mountAffiliates(msg: string | boolean = false, link: string | boolean = false) {
 		if (msg) {
-			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty">${msg}<br>Share your COLLABOCRATIC invite link to multiply commercial opportunities and scale your interconnected revenue streams: <b>${link}</b>.<br>Be Free, Be Freedom eE!</div>`
+			if (this.eAffiliates) this.eAffiliates.innerHTML = `<div class="aft-empty"><p>${msg}</p><p>Share your COLLABOCRATIC invite link to multiply commercial opportunities and scale your interconnected revenue streams:</p><p><b>${link}</b></p><p>Be Free, Be Freedom eE!</p></div>`
 			return false
 		}
 
@@ -145,9 +151,15 @@ export default class ProfileClass {
 								<div><label>Email:</label>${a.email}</div>
 								<div><label>Company:</label>${a.company}</div>
 								<div><label>Country:</label>${a.country}</div>
-				${a.password !== false ? `<div><label>Password:</label>${a.password}</div>` : ""}
 							</div>				
-							<div class="project">${a.projects.split(',').map((a: any) => `<span>${a}</span>`).join('') }</div>
+							<div class="project">${a.projects.split(',').map((a: any) => `<span>${a}</span>`).join('')}</div>
+				${a.password !== false ? `
+							<div class="bottom">
+								<div><label>Password:</label>${a.password}</div>
+								<div><label>Affiliate:</label>${a.aname}</div>
+								<div><label>Code:</label>${a.acode}</div>
+								<div><label>Email:</label>${a.aemail}</div>
+							</div>` : ""}
 						</div>
 					</td>
 				</tr>`
@@ -169,7 +181,7 @@ export default class ProfileClass {
 			})
 			const j = await f.json()
 			if(j) {
-				if(j.error) this.init()
+				if(j.error) await this.init()
 				__report(j.msg, 'info')
 			}
 		} catch(e){

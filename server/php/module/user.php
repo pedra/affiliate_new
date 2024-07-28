@@ -210,12 +210,10 @@ class User {
 			'email' => $to,
 			'password' => secured_decrypt($data['secpass']),
 			'affiliate_code' => $link,
-			'name' => $name . ' TEST'
+			'name' => $name
 		];
 
 		$res = postRequest(ENV['AROUND_API_URL'], $d);
-		debug($d);
-		debug($res);
 		if (!$res || !isset($res->id)) return false;
 
 		// 2
@@ -261,13 +259,19 @@ class User {
 		$state = $post['state'];
 		$set = $post['set'] == '1' ? true : false;
 
-		$res = $this->db->query(
+		if($state == 'enabled' && $user['level'] >= 20) {
+			$res = $this->db->query(
 			"select id, name, email, code, secpass, projects 
 			from user 
-			where id = :id and affiliate = :aft",
-			[':id' => $id, ':aft' => $user['id']]);
+			where id = :id", [':id' => $id]);
+		} else {
+			$res = $this->db->query(
+			"select id, name, email, code, secpass, projects 
+			from user 
+			where id = :id and affiliate = :aft", [':id' => $id, ':aft' => $user['id']]);
+		}
 
-		if(!$res) return ['error' => true, 'msg' => 'Authentication error (3)'];
+		if(!$res) return ['error' => true, 'msg' => 'Approval can only be done through the "Indicator"!'];
 
 		$setString = $set ? ' now() ' : ' null ';
 		$up = $this->db->update(
@@ -291,5 +295,12 @@ class User {
 			if($wk) return ['error' => false, 'msg' => 'Status updated!'];			
 		}
 		return ['error' => true, 'msg' => "I couldn't change..."];
+	}
+
+	public function xxx ($params, $queries, $post)
+	{
+		$code = (new \Lib\NuTSy)->mask($params[0]);
+
+		return [$params, $code];
 	}
 }

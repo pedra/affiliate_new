@@ -1,4 +1,4 @@
-const CACHE='cache-1697121067404-dev';
+const CACHE='cache-1697121067405-dev';
 const ASSETS=[
 	"/",
 	"/icon/android-chrome-192x192.png",
@@ -24,9 +24,6 @@ const ASSETS=[
 	"/img/8.jpg",
 	"/img/9.jpg",
 	"/img/10.jpg",
-	"/img/u/0.jpg",
-	"/img/u/1.jpg",
-	"/img/u/2.jpg",
 	
 	"/font/mso.woff2",
 	"/font/Montserrat.woff2",

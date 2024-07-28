@@ -37,7 +37,7 @@ const App = new class AppClass {
 
 		//console.log(`App::router started!\nPath: ${this.path}\nPage: ${this.page}`)
 		// Service Worker install
-		//'serviceWorker' in navigator && navigator.serviceWorker.register('/sw.js')
+		'serviceWorker' in navigator && navigator.serviceWorker.register('/sw.js')
 	}
 }
 

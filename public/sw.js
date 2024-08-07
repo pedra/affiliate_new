@@ -1,4 +1,4 @@
-const CACHE='cache-1697121067405-dev';
+const CACHE ='cache-169712106990';
 const ASSETS=[
 	"/",
 	"/icon/android-chrome-192x192.png",

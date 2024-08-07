@@ -61,7 +61,7 @@ export default class JoinClass {
 		this.eProjects?.forEach((a: any) => { if(a.dataset.status == '1') data.projects.push(a.dataset.name) })
 		data.projects = data.projects.join(',')
 		
-		if (data.projects.length == 0 || data.projects.indexOf('around') == -1) {
+		if (data.projects.length == 0) {
 			__glass(false)
 			return __report('Please select at least one project')
 		}

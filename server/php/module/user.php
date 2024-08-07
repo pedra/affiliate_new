@@ -44,8 +44,6 @@ class User {
 			return ['error' => true, 'msg' => '"Phone" must be at least 6 characters!'];
 		if(!isset($post['company']) && strlen($post['company']) < 6)
 			return ['error' => true, 'msg' => '"Company" must be at least 6 characters!'];
-		if(!isset($post['projects']) && !str_contains($post['projects'], 'around'))
-			return ['error' => true, 'msg' => '"Projects" must contain "around"!'];
 		if(!isset($post['affiliate']) && $post['affiliate'] == '')
 			return ['error' => true, 'msg' => 'This affiliate is not enabled!<br>Check if the <b>link</b> is correct or contact us.'];
 		
@@ -191,7 +189,7 @@ class User {
 	public function sendMailKit($data)
 	{
 		/**
-		 * 1 - Create user in Around API;
+		 * 1 - Create user in Around API [ AROUND is OUT ];
 		 * 2 - Verify response and validade: 
 		 * 		no -> return error & message;
 		 * 		yes -> continue...
@@ -205,16 +203,16 @@ class User {
 		$link = ENV['SHORT_URL'] . '/' . $data['code'];
 		$projects = explode(',', $data['projects']);
 
-		// 1
-		$d = [
-			'email' => $to,
-			'password' => secured_decrypt($data['secpass']),
-			'affiliate_code' => $link,
-			'name' => $name
-		];
+		// 1 AROUND is OUT
+		// $d = [
+		// 	'email' => $to,
+		// 	'password' => secured_decrypt($data['secpass']),
+		// 	'affiliate_code' => $link,
+		// 	'name' => $name
+		// ];
 
-		$res = postRequest(ENV['AROUND_API_URL'], $d);
-		if (!$res || !isset($res->id)) return false;
+		// $res = postRequest(ENV['AROUND_API_URL'], $d);
+		// if (!$res || !isset($res->id)) return false;
 
 		// 2
 		$name = mb_convert_encoding($name, 'ISO-8859-1', 'UTF-8');

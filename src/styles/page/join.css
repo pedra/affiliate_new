@@ -27,9 +27,9 @@
     margin: 1rem 0;
 }
 
-.projects .card-project:first-child {
+/* .projects .card-project:first-child {
    grid-column: span 2;
-}
+} */
 
 .card-project {
 	padding: 1rem;
@@ -214,7 +214,7 @@
 
 @media screen and (max-width:500px){
 
-    .projects .card-project:first-child,
+    /* .projects .card-project:first-child, */
 	.form .form-input:first-child {
        grid-column: span 1;
     }
